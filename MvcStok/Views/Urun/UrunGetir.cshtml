@@ -1,0 +1,45 @@
+﻿@model MvcStok.Models.Entity.Tbl_Urunler
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Urun", FormMethod.Post))
+
+{@* beginform-->başlangıç 3 parametre var (başlangıç yeri,controller ismi,methot) *@
+<div class="form-control">
+    @*Classlar şeklini ayarlar formu değiştirip demeyebilirsin*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.URUNID, htmlAttributes: new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.URUNID, new { @class = "form-control" })
+    </div>
+    <br />
+    @Html.LabelFor(m => m.URUNAD)@*Başlık:URUNAD*@
+    @Html.TextBoxFor(m => m.URUNAD, new { @class = "form-control" })@*Texbox içine URUNad alıyor*@
+    <br />
+    @Html.LabelFor(m => m.MARKA)@*Başlık:marka*@
+    @Html.TextBoxFor(m => m.MARKA, new { @class = "form-control" })@*Texbox içine MARKA alıyor*@
+    <br />
+
+    @*Dropdownlist sayseinde ıd yerine kategorının adını aldık öncesinde(//Güncelleye Butonuna Tıklandığında ürün Bilgilerini Getirme yaptık )*@
+
+    @Html.LabelFor(m => m.URUNKATEGORI)@*Başlık:URUNKATEGORI*@
+    @Html.DropDownListFor(m => m.Tbl_Kategoriler.KATERGOIID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    @*m-->sayesinde tblkategorıad aldık     listeden ogeleri sec--> ViewBag(tasıdıgımız ogeleri sec) controllerde dgr tanımlamıştık*@
+
+
+    <br />
+    @Html.LabelFor(m => m.FİYAT)@*Başlık:FIYAT*@
+    @Html.TextBoxFor(m => m.FİYAT, new { @class = "form-control" })@*Texbox içine FIYAT alıyor*@
+    <br />
+    @Html.LabelFor(m => m.STOK)@*Başlık:STOK*@
+    @Html.TextBoxFor(m => m.STOK, new { @class = "form-control" })@*Texbox içine STOK alıyor*@
+
+
+</div>
+<br />
+
+<div style="margin-top: 415px;margin-left:12px;">
+    <button class="btn btn-warning">ÜRÜN GÜNCELLE</button>
+</div>
+}

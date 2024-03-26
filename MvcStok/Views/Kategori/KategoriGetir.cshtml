@@ -1,0 +1,26 @@
+﻿@model MvcStok.Models.Entity.Tbl_Kategoriler
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@*Güncelleye Butonuna Tıklandığında KATERGOIID,KATEGORIAD Getirsin *@
+
+@*kategori controller icerisinde güncelle çalışacak ne zaman-->post(tıklama)işlemi oldugu zaman*@
+@using (Html.BeginForm("Guncelle", "Kategori", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.KATERGOIID)@*Başlık:KATEGORIID*@
+    @Html.TextBoxFor(m => m.KATERGOIID, new { @class = "form-control" })@*Texbox içine KATEGORIID alıyor*@
+    <br />
+    @Html.LabelFor(m => m.KATEGORIAD)@*Başlık:KATEGORIAD*@
+    @Html.TextBoxFor(m => m.KATEGORIAD, new { @class = "form-control" })@*Texbox içine KATEGORIAD alıyor*@
+
+</div>
+
+    <div>
+        <button class="btn btn-warning">Kategori Güncelle</button>
+    </div>
+}
+
+

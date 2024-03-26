@@ -1,0 +1,27 @@
+﻿@model MvcStok.Models.Entity.Tbl_Kategoriler
+@{
+    ViewBag.Title = "YeniKategori";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@*Yeni Kategori Ekleme Butonuna Tıklandığında*@
+
+<form class="form-group" method="post">
+    <div>
+        <label>Kategori Adı</label>
+
+        @*Dropdownlist sayseinde ıd yerine kategorının adını aldık *@
+
+        @Html.TextBoxFor(m => m.KATEGORIAD, new { @class = "form-control" })@*textboxa kategorıadı alsın*@
+        @Html.ValidationMessageFor(m => m.KATEGORIAD, "", new { @style = "color:green" })
+        @*daha oncesınde entitiy girip tblkategorıde mesaj verdik bize mesaj verecek mesajın rengi mavi*@
+
+    </div>
+
+    <br />
+    <div>
+        <button class="btn-primary">Kategori Ekle</button>
+    </div>
+
+</form>
+

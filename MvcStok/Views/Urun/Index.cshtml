@@ -1,0 +1,53 @@
+﻿@using MvcStok.Models.Entity;
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Tbl_Urunler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@*arama yapma*@
+@using (Html.BeginForm("Index", "Urun", FormMethod.Get))
+{
+    <p>
+        <b>Aranacak Ürün Adı:</b>@Html.TextBox("p")@*<b>-->kalın yazdırıyor bold ve karsınıa etxtbox koyduk p controllerde değişken ismimiz sayesinde arama yapıyoruz*@
+        <input type="submit" value="Ara" />@*submit butonla yanı sadece ozelligi farklı enter gorevi goruyo harf yaz entere bas *@
+    </p>
+}
+<table class="table table-bordered ">
+    <thead>
+        @*tablo başlığı*@
+        <tr>
+            <th>URUN ID</th>
+            <th>URUN ADI</th>
+            <th>MARKASI</th>
+            <th>KATEGORİ</th>
+            <th>FİYAT</th>
+            <th>STOK</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var urn in Model)
+        {
+            <tr>
+                <th>@urn.URUNID</th>
+                <td>@urn.URUNAD</td>
+                <td>@urn.MARKA</td>
+                <td>@(urn.Tbl_Kategoriler != null ? urn.Tbl_Kategoriler.KATEGORIAD : "")</td>
+                @*ınner joın işlemi-->tblkategoriler null değilse kategoriad'a erişir. controller ksımında joınlemiştik *@
+                <td>@urn.FİYAT</td>
+                <td>@urn.STOK</td>
+                <td><a href="/Urun/SIL/@urn.URUNID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/Urun/UrunGetir/@urn.URUNID " class="btn btn-success">GÜNCELLE</a></td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+<a href="/Urun/YeniUrün/" class="btn btn-primary">Yeni Ürün ekle</a>
+@* href adres class=buton türü ve başlığı yazdık*@
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))@*listeleme*@
